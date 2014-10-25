@@ -3,7 +3,7 @@
   (:use [pattern_count.core])
   (:use [clojure.test]))
 
-(deftest replace-me
+(deftest read-lines-test
   (let [
         [line1 line2] (read-lines
                        (BufferedReader. (StringReader.
