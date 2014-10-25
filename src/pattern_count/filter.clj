@@ -13,3 +13,8 @@
     (find-aux line re () 1)
   ))
 
+(defn count-items [line sub]
+  (let [items (find-items line sub)
+        n (count items)]
+    n))
+

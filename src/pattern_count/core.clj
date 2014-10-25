@@ -35,7 +35,7 @@
   (let [opts (getopts (options "is" {:infile :arg
                                      :skip :arg}) args)
         [line1 line2] (read-data opts)
-        res (pattern_count.filter/find-items line1 line2)
+        res (pattern_count.filter/count-items line1 line2)
         ]
     (println "res:" res)))
 
