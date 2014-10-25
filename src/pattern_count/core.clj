@@ -14,7 +14,6 @@
         lines2 (drop skip lines)
         [line1 line2] (take 2 lines2)
         res [line1 line2]
-        ;; res (pattern_count.filter/find-items line1 line2)
         ]
     res))
 
