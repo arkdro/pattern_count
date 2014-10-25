@@ -5,7 +5,7 @@ Pattern count.
 
 ## Usage
 
-FIXME: write
+lein run --infile file --skip n_lines
 
 ## License
 
