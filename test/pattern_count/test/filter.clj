@@ -16,3 +16,8 @@
   (is (= {"wer" 1 "asd" 3} (add-one-k-mer 1 "qwer" 3 {"asd" 3})))
   )
 
+(deftest count-k-mers-test
+  (is (= {"sas" 1, "fas" 1, "dfa" 1, "adf" 1, "sad" 1, "asa" 3}
+         (count-k-mers "asadfasasa" 3)))
+  )
+
