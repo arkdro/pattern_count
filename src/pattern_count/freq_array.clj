@@ -9,6 +9,7 @@
            len line)
     acc))
 
+;; O(n), where n = length(line)
 (defn count-k-mers [line k]
   (count-k-mers-aux 0 k {} (count line) line))
 
