@@ -12,3 +12,8 @@
 (defn count-k-mers [line k]
   (count-k-mers-aux 0 k {} (count line) line))
 
+(defn count-items [text k-mer]
+  (let [all-counts (count-k-mers text (count k-mer))
+        res (get all-counts k-mer)]
+    res))
+
