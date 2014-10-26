@@ -1,4 +1,6 @@
-(ns pattern_count.filter)
+(ns pattern_count.filter
+  (:require bia_utils.util)
+  )
 
 (defn find-aux [line re acc idx]
   (if (empty? line) (reverse acc)
@@ -17,4 +19,21 @@
   (let [items (find-items line sub)
         n (count items)]
     n))
+
+(defn add-one-k-mer [idx line k acc]
+  (let [k-mer (bia_utils.util/get-one-k-mer idx line k)
+        n (count-items line k-mer)
+        new-acc (update-in acc [k-mer] (fnil inc 0))]
+    new-acc))
+
+(defn count-k-mers-aux [idx k acc len line]
+  (if (bia_utils.util/is-data-available idx len k)
+    (recur (inc idx) k
+           (add-one-k-mer idx line k acc)
+           len line)
+    acc))
+
+(defn count-k-mers [line k]
+  (count-k-mers-aux 0 k {} (count line) line)
+  )
 
