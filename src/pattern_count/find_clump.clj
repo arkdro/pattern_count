@@ -19,7 +19,38 @@
            len line)
     acc))
 
+(defn is-next-pos-good-for-clump [window need idx cur-pos positions]
+  (let [
+        next-pos (get positions idx)
+        delta (- next-pos cur-pos)
+        ]
+    )
+  )
+
+;; results should be processed as a such:
+;; found - continue, starting from the rest of positions (t positions consumed)
+;; not found - continue, starting from the second position of the whole list
+(defn get-clump-aux [window need k-mer cnt cur-pos positions]
+  (cond
+    (>= cnt need) {:found true, :cnt cnt, :pos cur-pos, :rest positions}
+    (is-next-pos-good-for-clump window need cur-pos positions)
+      (get-clump-aux window need k-mer (inc cnt) cur-pos (rest positions))
+    :default {:found false}
+    )
+  )
+
+(defn get-clump [window need k-mer positions]
+  (if (> (count positions) 1)
+    (get-clump-aux window need k-mer 1 (first positions) (rest positions))
+    [k-mer nil]
+    )
+  )
+
 (defn iter-k-mers [line k window t]
-  (collect-k-mers-positions 0 k window t {} (count line) line)
+  (let [
+        positions (collect-k-mers-positions 0 k window t {} (count line) line)
+        clumps (map #(get-clump window t %) positions)
+        ]
+    clumps)
   )
 
