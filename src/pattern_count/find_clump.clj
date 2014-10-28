@@ -28,19 +28,29 @@
 
 ;; results should be processed as a such:
 ;; found - continue, starting from the rest of positions (t positions consumed)
+;; that are farther by window size (for this window position the clump
+;; has been found) from cur-pos. In fact, continue is unnecessary.
 ;; not found - continue, starting from the second position of the whole list
-(defn get-clump-aux [window need k-mer cnt cur-pos positions]
+(defn get-clump-aux2 [window need k-mer cnt cur-pos positions]
   (cond
     (>= cnt need) {:found true, :cnt cnt, :pos cur-pos, :rest positions}
     (is-next-pos-good-for-clump window need cur-pos positions)
-      (get-clump-aux window need k-mer (inc cnt) cur-pos (rest positions))
-    :default {:found false}
-    )
-  )
+      (recur window need k-mer (inc cnt) cur-pos (rest positions))
+    :default {:found false}))
 
-(defn get-clump [window need k-mer positions]
-  (if (> (count positions) 1)
-    (get-clump-aux window need k-mer 1 (first positions) (rest positions))
+(defn get-clump-aux1 [window need k-mer positions]
+  (if (empty? positions)
+    [k-mer nil]
+    (let [res (get-clump-aux2 window need k-mer 1
+                              (first positions)
+                              (rest positions))]
+      (if (:found res)
+        [k-mer (:pos res)]
+        (recur window need k-mer (rest positions))))))
+
+(defn get-clump [window need [k-mer positions]]
+  (if (>= (count positions) need)
+    (get-clump-aux1 window need k-mer positions)
     [k-mer nil]
     )
   )
