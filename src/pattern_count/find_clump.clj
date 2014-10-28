@@ -20,12 +20,11 @@
     acc))
 
 (defn is-next-pos-good-for-clump [window need idx cur-pos positions]
-  (let [
-        next-pos (get positions idx)
-        delta (- next-pos cur-pos)
-        ]
-    )
-  )
+  (if (empty? positions)
+    false
+    (let [next-pos (get positions idx)
+          delta (- next-pos cur-pos)]
+      (<= delta window))))
 
 ;; results should be processed as a such:
 ;; found - continue, starting from the rest of positions (t positions consumed)
