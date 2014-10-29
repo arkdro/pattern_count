@@ -24,6 +24,12 @@
           0 3 5 2 {} 10 "asadfasasa")))
   )
 
+(deftest is-distance-short-test
+  (is (= true (pattern_count.find_clump/is-distance-short 10 0 2)))
+  (is (= false (pattern_count.find_clump/is-distance-short 10 0 12)))
+  (is (= false (pattern_count.find_clump/is-distance-short 10 0 10)))
+  )
+
 (deftest is-next-pos-good-for-clump-test
   (is (= false
          (pattern_count.find_clump/is-next-pos-good-for-clump
