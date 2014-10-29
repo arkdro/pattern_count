@@ -59,7 +59,8 @@
 (defn iter-k-mers [line k window t]
   (let [
         positions (collect-k-mers-positions 0 k window t {} (count line) line)
-        clumps (map #(get-clump window t %) positions)
+        raw-clumps (map #(get-clump window t %) positions)
+        clumps (filter #(not (nil? (second %))) raw-clumps)
         ]
     clumps)
   )
