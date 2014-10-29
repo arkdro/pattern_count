@@ -54,3 +54,9 @@
           10 2 "asa" 1 5 [5 27])))
   )
 
+(deftest get-clump-aux1-test
+  (is (= ["asa" nil]
+         (pattern_count.find_clump/get-clump-aux1
+          10 2 "asa" [0 13 27])))
+  )
+
