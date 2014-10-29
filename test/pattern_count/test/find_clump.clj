@@ -28,6 +28,11 @@
   (is (= true (pattern_count.find_clump/is-distance-short 3 10 0 2)))
   (is (= false (pattern_count.find_clump/is-distance-short 3 10 0 12)))
   (is (= false (pattern_count.find_clump/is-distance-short 3 10 0 10)))
+  (is (= true (pattern_count.find_clump/is-distance-short 3 10 0 6)))
+  (is (= true (pattern_count.find_clump/is-distance-short 3 10 0 7)))
+  (is (= false (pattern_count.find_clump/is-distance-short 3 10 0 8)))
+  (is (= true (pattern_count.find_clump/is-distance-short 2 4 0 2)))
+  (is (= false (pattern_count.find_clump/is-distance-short 2 4 0 3)))
   )
 
 (deftest is-next-pos-good-for-clump-test
