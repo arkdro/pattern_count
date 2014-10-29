@@ -78,3 +78,14 @@
           10 2 ["asa" [0 15 22]])))
   )
 
+(deftest iter-k-mers-test
+  (is (= '()
+         (pattern_count.find_clump/iter-k-mers "asadfasasa" 3 10 5)))
+  (is (= '()
+         (pattern_count.find_clump/iter-k-mers "asadsfasasa" 3 10 3)))
+  (is (= '(["asa" 0])
+         (pattern_count.find_clump/iter-k-mers "asadfasasa" 3 10 3)))
+  (is (= '(["sas" 6] ["fas" 4] ["dfa" 3] ["adf" 2] ["sad" 1] ["asa" 0])
+         (pattern_count.find_clump/iter-k-mers "asadfasasa" 3 10 1)))
+  )
+
