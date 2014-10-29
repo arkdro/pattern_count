@@ -19,7 +19,7 @@
            len line)
     acc))
 
-(defn is-next-pos-good-for-clump [window need idx cur-pos positions]
+(defn is-next-pos-good-for-clump [window idx cur-pos positions]
   (if (empty? positions)
     false
     (let [next-pos (get positions idx)
@@ -34,8 +34,8 @@
 (defn get-clump-aux2 [window need k-mer cnt cur-pos positions]
   (cond
     (>= cnt need) {:found true, :cnt cnt, :pos cur-pos, :rest positions}
-    (is-next-pos-good-for-clump window need cur-pos positions)
-      (recur window need k-mer (inc cnt) cur-pos (rest positions))
+    (is-next-pos-good-for-clump window cnt cur-pos positions)
+      (recur window need k-mer (inc cnt) cur-pos positions)
     :default {:found false}))
 
 (defn get-clump-aux1 [window need k-mer positions]
