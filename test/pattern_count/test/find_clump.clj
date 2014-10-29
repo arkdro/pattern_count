@@ -28,6 +28,9 @@
   (is (= false
          (pattern_count.find_clump/is-next-pos-good-for-clump
           10 0 2 [])))
+  (is (= false
+         (pattern_count.find_clump/is-next-pos-good-for-clump
+          10 1 5 [5])))
   (is (= true
          (pattern_count.find_clump/is-next-pos-good-for-clump
           10 1 2 [0 5])))
