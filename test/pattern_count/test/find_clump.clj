@@ -36,3 +36,18 @@
           10 2 3 7 [0 5 7 32])))
   )
 
+(deftest get-clump-aux2-test
+  (is (= {:found false}
+         (pattern_count.find_clump/get-clump-aux2
+          10 2 "asa" 1 0 [0 13 17])))
+  (is (= {:found true, :cnt 1, :pos 0, :rest [0 5 7]}
+         (pattern_count.find_clump/get-clump-aux2
+          10 1 "asa" 1 0 [0 5 7])))
+  (is (= {:found true, :cnt 2, :pos 0, :rest [0 5 27]}
+         (pattern_count.find_clump/get-clump-aux2
+          10 2 "asa" 1 0 [0 5 27])))
+  (is (= {:found false}
+         (pattern_count.find_clump/get-clump-aux2
+          10 2 "asa" 1 5 [5 27])))
+  )
+
