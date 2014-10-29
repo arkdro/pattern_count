@@ -19,13 +19,15 @@
            len line)
     acc))
 
+(defn is-distance-short [window cur-pos next-pos]
+  (let [delta (- next-pos cur-pos)]
+    (< delta window)))
+
 (defn is-next-pos-good-for-clump [window idx cur-pos positions]
   (cond
     (empty? positions) false
     (<= (count positions) idx) false
-    :default (let [next-pos (nth positions idx)
-                   delta (- next-pos cur-pos)]
-               (<= delta window))))
+    :default (is-distance-short window cur-pos (nth positions idx))))
 
 ;; results should be processed as a such:
 ;; found - continue, starting from the rest of positions (t positions consumed)
