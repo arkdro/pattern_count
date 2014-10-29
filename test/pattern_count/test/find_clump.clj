@@ -60,3 +60,21 @@
           10 2 "asa" [0 13 27])))
   )
 
+(deftest get-clump-test
+  (is (= ["asa" nil]
+         (pattern_count.find_clump/get-clump
+          10 2 ["asa" []])))
+  (is (= ["asa" nil]
+         (pattern_count.find_clump/get-clump
+          10 2 ["asa" [0]])))
+  (is (= ["asa" nil]
+         (pattern_count.find_clump/get-clump
+          10 2 ["asa" [0 13 27]])))
+  (is (= ["asa" 0]
+         (pattern_count.find_clump/get-clump
+          10 2 ["asa" [0 5 27]])))
+  (is (= ["asa" 15]
+         (pattern_count.find_clump/get-clump
+          10 2 ["asa" [0 15 22]])))
+  )
+
