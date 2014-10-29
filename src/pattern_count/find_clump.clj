@@ -20,8 +20,9 @@
     acc))
 
 (defn is-distance-short [k window cur-pos next-pos]
-  (let [delta (- next-pos cur-pos)]
-    (< delta window)))
+  (let [delta (- next-pos cur-pos)
+        full-fit-window (- window k)]
+    (<= delta full-fit-window)))
 
 (defn is-next-pos-good-for-clump [k window idx cur-pos positions]
   (cond
