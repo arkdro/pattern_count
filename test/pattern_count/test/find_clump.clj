@@ -24,3 +24,15 @@
           0 3 5 2 {} 10 "asadfasasa")))
   )
 
+(deftest is-next-pos-good-for-clump-test
+  (is (= false
+         (pattern_count.find_clump/is-next-pos-good-for-clump
+          10 1 0 2 [])))
+  (is (= true
+         (pattern_count.find_clump/is-next-pos-good-for-clump
+          10 1 1 2 [0 5])))
+  (is (= false
+         (pattern_count.find_clump/is-next-pos-good-for-clump
+          10 2 3 7 [0 5 7 32])))
+  )
+
