@@ -44,10 +44,10 @@
     [k-mer nil]
     (let [res (get-clump-aux2 window need k-mer 1
                               (first positions)
-                              (rest positions))]
+                              positions)]
       (if (:found res)
         [k-mer (:pos res)]
-        (recur window need k-mer (rest positions))))))
+        (recur window need k-mer (vec (rest positions)))))))
 
 (defn get-clump [window need [k-mer positions]]
   (if (>= (count positions) need)
